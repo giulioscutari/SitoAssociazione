@@ -1,0 +1,110 @@
+/* #div_id_email .email {
+    width: 300px;
+    display: block;
+  margin-right: auto;
+  margin-left: auto;
+} ad andrea piace la fregna*/
+.content-section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+html,
+.pippo {
+  background-color: #822433;
+  color: #ffffff;
+  text-shadow: 0px 0px 10px #123451;
+}
+.pippo {
+  align-items: center;
+  text-align: center;
+}
+.form-group {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.form-group input {
+  width: 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.HeaderReg {
+  font-family: "Monaco", monospace, sans-serif;
+}
+footer {
+  background-color: #822433;
+}
+.row.justify-content-evenly {
+  width: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0%;
+}
+.btn-center {
+  text-align: center;
+}
+.btn-light:hover {
+  filter: invert(1);
+  transition: 0.5s ease;
+}
+.btn-login {
+  padding: 2%;
+}
+/* .imgreg:hover{
+    filter: invert(1);
+    transition: 0.5s ease;
+} */
+
+#TableDomandeFiltro {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#TableDomande {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#TableDomande th,
+#TableDomande td {
+  text-align: left;
+  padding: 12px;
+}
+
+#TableDomande tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#TableDomande tr.header,
+#TableDomande tr:hover {
+  background-color: #f1f1f1;
+}
+
+#imgreg img{
+  width: 113%;
+  opacity: 60%;
+}
+#imgacc img{
+  width: 70%;
+  opacity: 60%;
+}
+#imgreg:hover img:hover, #imgacc:hover img:hover{
+  transition: 0.3s ease;
+  opacity:100%;
+}
+.backhome{
+  opacity: 60%;
+}
+.backhome:hover{
+  transition: 1s, ease;
+  opacity: 1;
+}

@@ -1,0 +1,112 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<div>
+  <select name="cars" id="TableDomandeFiltro" onchange="search()">
+    <option value="Tutti">Tutti</option>
+    <option value="Canale A">Canale A</option>
+    <option value="Canale B">Canale B</option>
+    <option value="Canale C">Canale C</option>
+    <option value="Canale D">Canale D</option>
+    <option value="Canale HT">Canale HT</option>
+  </select>
+
+  <div class="row">
+    <div class="col-md">
+      <div class="card card-body">
+        <table class="js-sort-table table table-sm" id="TableDomande">
+          <thead>
+            <tr>
+              <th>Domanda</th>
+              <th>Professore</th>
+              <th>Canale</th>
+              <th>Punteggio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for domanda in domande %}
+            <tr>
+              <td><a href="{{domanda.id}}">{{domanda.domanda|truncatechars:25}}</a></td>
+              <td>{{domanda.prof}}</td>
+              <td>{{domanda.gruppo}}</td>
+              <td>{{domanda.punteggio}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <span class="step-links">
+      <nav aria-label="Navigate thought pages">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1"> &laquo; Prima</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+              >Precedente</a
+            >
+          </li>
+          {% endif %} {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+              >{{ page_obj.previous_page_number }}</a
+            >
+          </li>
+          {% endif %}
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">{{ page_obj.number }}</a>
+          </li>
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+              >{{ page_obj.next_page_number }}</a
+            >
+          </li>
+          {% endif %} {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+              >Successiva</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+              >Ultima &raquo;</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </span>
+  </div>
+</div>
+
+<script>
+  function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("TableDomandeFiltro");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("TableDomande");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (filter == "TUTTI") {
+          tr[i].style.display = "table-row";
+        } else if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+{% endblock content %}

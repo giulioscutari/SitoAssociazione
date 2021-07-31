@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="backhome">
+        <a href="{% url 'landingpage' %}"><img src="https://i.ibb.co/ZVmkGj1/Back-Home.png" id="backhome" width="150px"></a>
+    </div>
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 HeaderReg">Form di registrazione</legend>
+                {{ form|crispy }}
+            </fieldset>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Attenzione: {% endif %}
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="form-group">
+                <button class="btn btn-light" type="submit"><img src="https://i.ibb.co/bmYHvC1/regist15.png" width="150px"></button>
+                <h4 style="color: lightgray;"><i><b>ATTENZIONE:</b><br></h4><h6 style="color: lightgray;"> Per motivi di sicurezza, l'iscrizione a questo sito viene approvata manualmente. Questo processo potrebbe richiedere fino a 48 ore.Se l'iscrizione non viene approvata entro 48 ore, contattaci <a href='mailto:mivas.karakassilis@uniroma1.it'>cliccando qui</a>
+                </i></h6>
+                
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+    </div>
+{% endblock content %}

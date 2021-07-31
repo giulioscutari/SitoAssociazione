@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Materia</h3>
+<h5>{{object.materia}}</h5>
+
+<h3>Domanda</h3>
+<h5>{{object.domanda}}</h5>
+
+<h3>Professore</h3>
+<h5>{{object.prof}}</h5>
+
+
+<p>{{object.pk}}</p>
+
+<footer>Domanda fatta a {{object.username}} durante il corso di {{object.materia}} dell'anno {{object.anno}} del {{object.gruppo.lower}}</footer>
+
+{% endblock content %}

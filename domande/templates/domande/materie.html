@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>MATERIE.HTML</h2>
+
+<div>
+    <ul>
+        {% for materia in materie %}
+            <a href="{{materia.materia}}"><li>{{materia.materia}}</li></a>
+        {% endfor %}
+    </ul>
+</div>
+  
+
+
+
+{% endblock content %}
