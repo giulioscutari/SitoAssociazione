@@ -30,7 +30,7 @@
               <td><a href="{{domanda.id}}">{{domanda.domanda|truncatechars:25}}</a></td>
               <td>{{domanda.prof}}</td>
               <td>{{domanda.gruppo}}</td>
-              <td>{{domanda.punteggio}}</td>
+              <td>{% if domanda.punteggio >= 10 %} <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVeLTJpzkyNmG4CqDyYPnWU0GCv7fiiWEKeQ&usqp=CAU" width="100px">{% endif %}</td>
             </tr>
             {% endfor %}
           </tbody>

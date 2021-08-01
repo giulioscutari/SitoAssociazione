@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import FormDomanda
 from .models import Domanda
+# from django.http import JsonResponse
 
 # Create your views here.
 
@@ -21,4 +22,8 @@ def send_question(request):
 
 
 
-    
+# def ciao(request):
+
+#     return JsonResponse({
+#         "hello": "culo"
+#     })

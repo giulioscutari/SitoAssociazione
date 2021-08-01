@@ -7,4 +7,4 @@ class FormDomanda(ModelForm):
 
     class Meta:
         model = Domanda
-        fields = ['domanda', 'prof', 'materia', 'gruppo', 'anno', 'username']
+        fields = ['domanda', 'prof', 'materia', 'gruppo', 'username']

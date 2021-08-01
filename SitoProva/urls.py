@@ -19,10 +19,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
-from django.shortcuts import render
+from django.shortcuts import redirect, render, reverse
 
-def lp(request):
-    return render(request,"index.html")
+# def lp(request):
+#     if(request.user.is_authenticated):
+#         return redirect(reverse('materie:'))
+#     return render(request,"index.html")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,17 +1,17 @@
-/* #div_id_email .email {
-    width: 300px;
-    display: block;
-  margin-right: auto;
-  margin-left: auto;
-} ad andrea piace la fregna*/
+:root {
+  --main-bg-color: #e58a99;
+}
+
 .content-section {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
 }
-html,
+
+html, 
 .pippo {
-  background-color: #822433;
+  background-color: var(--main-bg-color);
+  background-color: #f8ced5;
   color: #ffffff;
   text-shadow: 0px 0px 10px #123451;
 }
@@ -34,7 +34,7 @@ html,
   font-family: "Monaco", monospace, sans-serif;
 }
 footer {
-  background-color: #822433;
+  background-color: var(--main-bg-color);
 }
 .row.justify-content-evenly {
   width: 100%;
@@ -52,10 +52,9 @@ footer {
 .btn-login {
   padding: 2%;
 }
-/* .imgreg:hover{
-    filter: invert(1);
-    transition: 0.5s ease;
-} */
+header, nav{
+  background-color: var(--main-bg-color);
+}
 
 #TableDomandeFiltro {
   background-position: 10px 10px;
