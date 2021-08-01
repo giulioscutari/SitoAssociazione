@@ -9,6 +9,6 @@ class QuestionsView(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         return Domanda.objects.filter(materia__materia=self.kwargs['materia'], status='Published'
         ).order_by('-punteggio')

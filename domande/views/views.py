@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import FormDomanda
-from .models import Domanda
+from domande.forms import FormDomanda
+from domande.models import Domanda
 # from django.http import JsonResponse
 
 # Create your views here.
@@ -19,11 +19,3 @@ def send_question(request):
         form = FormDomanda(initial={"username": request.user.username})
     
     return render(request, 'domande/sendquestion.html', {'form': form, "username": request.user.username})
-
-
-
-# def ciao(request):
-
-#     return JsonResponse({
-#         "hello": "culo"
-#     })

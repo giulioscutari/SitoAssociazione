@@ -22,4 +22,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         # instance.is_active = False
         profile = Profile.objects.create(user=instance)
-    instance.profile.save()
+    # instance.profile.save()

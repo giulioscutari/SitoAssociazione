@@ -1,9 +1,8 @@
-{% extends "base.html" %} 
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div>
-  <select name="cars" id="TableDomandeFiltro" onchange="search()">
+    <button onclick="get_random_question()">Random</button>
+    <select name="cars" id="TableDomandeFiltro" onchange="search()">
     <option value="Tutti">Tutti</option>
     <option value="Canale A">Canale A</option>
     <option value="Canale B">Canale B</option>
@@ -11,36 +10,35 @@
     <option value="Canale D">Canale D</option>
     <option value="Canale HT">Canale HT</option>
   </select>
-
-  <div class="row">
-    <div class="col-md">
-      <div class="card card-body">
-        <table class="js-sort-table table table-sm" id="TableDomande">
-          <thead>
-            <tr>
-              <th>Domanda</th>
-              <th>Professore</th>
-              <th>Canale</th>
-              <th>Punteggio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for domanda in domande %}
-            <tr>
-              <td><a href="{{domanda.id}}">{{domanda.domanda|truncatechars:25}}</a></td>
-              <td>{{domanda.prof}}</td>
-              <td>{{domanda.gruppo}}</td>
-              <td>{% if domanda.punteggio >= 10 %} <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVeLTJpzkyNmG4CqDyYPnWU0GCv7fiiWEKeQ&usqp=CAU" width="100px">{% endif %}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="js-sort-table table table-sm" id="TableDomande">
+                    <thead>
+                        <tr>
+                            <th>Domanda</th>
+                            <th>Professore</th>
+                            <th>Canale</th>
+                            <th>Punteggio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for domanda in domande %}
+                        <tr>
+                            <td><a href="{{domanda.id}}">{{domanda.domanda|truncatechars:25}}</a></td>
+                            <td>{{domanda.prof}}</td>
+                            <td>{{domanda.gruppo}}</td>
+                            <td>{% if domanda.punteggio >= 10 %} <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVeLTJpzkyNmG4CqDyYPnWU0GCv7fiiWEKeQ&usqp=CAU" width="100px">{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="pagination">
-    <span class="step-links">
+    <div class="pagination">
+        <span class="step-links">
       <nav aria-label="Navigate thought pages">
         <ul class="pagination justify-content-center">
           {% if page_obj.has_previous %}
@@ -83,30 +81,49 @@
         </ul>
       </nav>
     </span>
-  </div>
+    </div>
 </div>
 
 <script>
-  function search() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("TableDomandeFiltro");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("TableDomande");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (filter == "TUTTI") {
-          tr[i].style.display = "table-row";
-        } else if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("TableDomandeFiltro");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("TableDomande");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (filter == "TUTTI") {
+                    tr[i].style.display = "table-row";
+                } else if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
         }
-      }
     }
-  }
+
+    function get_random_question() {
+
+        var path = location.pathname;
+        var directories = path.split("/");
+        var subject = directories[(directories.length - 2)];
+        $('#TableDomandeFiltro').before(
+            `
+          <div id="random_question_div"></div>
+        `)
+        $.ajax({
+            url: '/materie/random_api/' + subject,
+            success: function(data) {
+                $('#random_question_div').append(
+                    data.domanda + " <br/>Fatta da " + data.prof
+                )
+            }
+        });
+    }
 </script>
 
 {% endblock content %}
